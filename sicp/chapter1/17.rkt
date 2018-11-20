@@ -12,8 +12,12 @@
 (define (* a b)
     (cond ((or (= a 0) (= b 0)) 0)
           ((= b 1) a)
+          ((< b 0) (- (* a (- b))))
           ((even? b) (* (double a) (halve b)))
           (else (+ a (* a (- b 1))))))
 
 (check-equal? (* 2 4) 8)
 (check-equal? (* 3 5) 15)
+(check-equal? (* -2 4) -8)
+(check-equal? (* 3 -5) -15)
+(check-equal? (* -3 -5) 15)
